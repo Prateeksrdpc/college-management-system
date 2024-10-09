@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { login } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 // src/components/LoginPage.js
-import { fetchStats } from '../services/adminService'; // Import fetchStats
 
 function LoginPage({ onClose, setAuthenticated, setUserRole, setUsername }) {
   const [email, setEmail] = useState('');

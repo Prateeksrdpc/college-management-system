@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import AdminSidebar from '../components/AdminSidebar';
 import Card from '../components/Card';
 import axios from 'axios';
-import { fetchStats } from '../services/adminService';
 
 function AdminDashboard() {
   const API_URL = 'http://localhost:9090/api/';
