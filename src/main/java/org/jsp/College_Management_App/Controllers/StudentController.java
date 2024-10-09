@@ -27,12 +27,7 @@ public class StudentController {
         List<Student> students = studentService.getAllStudents();
         return ResponseEntity.ok(students);
     }
-    @GetMapping("/count")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public ResponseEntity<Integer> getAllStudentsCount() {
-        List<Student> students = studentService.getAllStudents();
-        return ResponseEntity.ok(students.size());
-    }
+    
 
     // Get student by id
     @GetMapping("/{id}")

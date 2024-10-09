@@ -34,12 +34,7 @@ public class CourseController {
         List<Course> courses = courseService.getAllCourses();
         return ResponseEntity.ok(courses);
     }
-    @GetMapping("/count")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Integer> getAllCoursesCount() {
-        List<Course> courses = courseService.getAllCourses();
-        return ResponseEntity.ok(courses.size());
-    }
+
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")

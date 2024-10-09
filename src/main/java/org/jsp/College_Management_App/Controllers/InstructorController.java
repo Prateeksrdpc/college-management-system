@@ -28,11 +28,7 @@ public class InstructorController {
 	        List<Instructor> instructor=instructorService.getAllInstructors();
 	        return ResponseEntity.ok(instructor);
 	    }
-	    @GetMapping("/count")
-	    public ResponseEntity<Integer>getAllInstructorsCount() {
-	        List<Instructor> instructor=instructorService.getAllInstructors();
-	        return ResponseEntity.ok(instructor.size());
-	    }
+	  
 	    
 
 	    // Get instructor by ID

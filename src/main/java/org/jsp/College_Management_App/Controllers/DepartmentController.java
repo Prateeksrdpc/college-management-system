@@ -25,12 +25,7 @@ public class DepartmentController {
         List<Department> departments = departmentService.getAllDepartments();
         return ResponseEntity.ok(departments);
     }
-    @GetMapping("/count")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Integer> getAllDepartmentsCount() {
-        List<Department> departments = departmentService.getAllDepartments();
-        return ResponseEntity.ok(departments.size());
-    }
+    
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
