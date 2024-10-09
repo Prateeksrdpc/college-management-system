@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { login } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
+// src/components/LoginPage.js
+import { fetchStats } from '../services/adminService'; // Import fetchStats
 
 function LoginPage({ onClose, setAuthenticated, setUserRole, setUsername }) {
   const [email, setEmail] = useState('');
@@ -18,10 +20,18 @@ function LoginPage({ onClose, setAuthenticated, setUserRole, setUsername }) {
       setAuthenticated(true);
       setUserRole(response.roles[0]); // assuming first role defines access
       setUsername(response.username);
-  
+      // if (response.roles.includes('ROLE_ADMIN')){
+      //   const stats = await fetchStats(); // Fetch admin-related stats after login
+      // console.log(stats); // For debugging, you can remove this later
+      // }
+      
+      
+      
       // Role-based navigation
       if (response.roles.includes('ROLE_ADMIN')) {
+       
         navigate('/admindashboard');
+      
       } else if (response.roles.includes('ROLE_USER')) {
         navigate('/userdashboard');
       } else if (response.roles.includes('ROLE_STUDENT')) {

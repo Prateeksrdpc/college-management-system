@@ -4,15 +4,16 @@ import AdminSidebar from '../components/AdminSidebar';
 
 // import AdminSidebar from '../components/AdminSidebar';
 
-const API_URL = 'http://localhost:9090/api/';
+
+
+const ManageDepartments = () => {
+  const API_URL = 'http://localhost:9090/api/';
 const token = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : null;
 
 const instance = axios.create({
   baseURL: API_URL,
   headers: { Authorization: `Bearer ${token}` },
 });
-
-const ManageDepartments = () => {
   const [departments, setDepartments] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [instructors, setInstructors] = useState([]);

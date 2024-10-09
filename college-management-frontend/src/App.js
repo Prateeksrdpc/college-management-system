@@ -20,7 +20,9 @@ function App() {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [userRole, setUserRole] = useState('');
   const [username, setUsername] = useState('');
+  const token = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : null;
 
+ 
   useEffect(() => {
     const userData = localStorage.getItem('user');
     if (userData) {
@@ -36,6 +38,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     setAuthenticated(false);
     setUserRole('');
     setUsername('');

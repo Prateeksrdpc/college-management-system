@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import AdminSidebar from '../components/AdminSidebar';
 import Card from '../components/Card';
-import { getDepartmentCount, getStudentCount, getInstructorCount, getCourseCount } from '../services/adminService';
+import axios from 'axios';
+import { fetchStats } from '../services/adminService';
 
 function AdminDashboard() {
+  const API_URL = 'http://localhost:9090/api/';
+
+const token = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : null; // Get token from localStorage
+
+const instance = axios.create({
+  baseURL: API_URL,
+  headers: { Authorization: `Bearer ${token}` } // Include token in Authorization header
+});
   const [stats, setStats] = useState({
     students: 0,
     instructors: 0,
@@ -12,17 +21,34 @@ function AdminDashboard() {
     enrollements :0,
   });
 
-  useEffect(() => {
-    async function fetchStats() {
-      const students = await getStudentCount();
-      const instructors = await getInstructorCount();
-      const departments = await getDepartmentCount();
-      const courses = await getCourseCount();
+// Fetch all departments and courses
+useEffect(() => {
+  count();
+}, []);
+
+    const count=async ()=> {
+
+      try{
+        const statsData = await  instance.get('all/count');
+        const data=statsData.data;
+        setStats({
+          ...stats,
+          students:data[0],
+          instructors:data[1],
+          departments:data[2],
+          courses:data[3],
   
-      setStats({ students, instructors, departments, courses });
+        })
+      }catch (error) {
+        console.error('Error fetching data:', error);
+      
+      }
+  
     }
-    fetchStats();
-  }, []);
+  
+ count()
+
+ 
 
   return (
     <div className="flex">

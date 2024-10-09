@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminSidebar from '../components/AdminSidebar';
 
-const API_URL = 'http://localhost:9090/api/';
+
+
+const ManageStudents = () => {
+  const API_URL = 'http://localhost:9090/api/';
 const token = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : null;
 
 const instance = axios.create({
   baseURL: API_URL,
   headers: { Authorization: `Bearer ${token}` },
 });
-
-const ManageStudents = () => {
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]); // Array of course IDs
